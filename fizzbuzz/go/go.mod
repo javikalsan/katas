@@ -1,4 +1,4 @@
-module github.com/javikalsan/katas/go/fizzbuzz
+module github.com/javikalsan/katas/fizzbuzz/go
 
 go 1.17
 
