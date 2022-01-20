@@ -11,14 +11,8 @@ coverage:
 	coverage html
 	@printf "Please open the report at htmlcov/index.html\n"
 
-golden-master:
-	python trivia/game.py
-
 docker-run:
 	docker run --rm -v "${PWD}:/opt/project" -w /opt/project python:3.8 make run
-
-docker-golden-master:
-	docker run --rm -v "${PWD}:/opt/project" -w /opt/project python:3.8 make golden-master
 
 define HELP
  Local commands
