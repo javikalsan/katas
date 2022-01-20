@@ -1,18 +1,33 @@
-.PHONY: default run coverage golden-master docker-run docker-golden-master
+.PHONY: default run coverage golden-master docker-run docker-golden-master tests docker-tests docker-mutation
 
 default:
 	@printf "$$HELP"
+
+docker-build:
+	@docker build . -t python-coverage
 
 run:
 	python trivia/game.py
 
 coverage:
-	pytest --cov=trivia tests
+	python -m pytest --cov=trivia tests
 	coverage html
 	@printf "Please open the report at htmlcov/index.html\n"
 
+tests:
+	python -m unittest tests/test*
+
 docker-run:
 	docker run --rm -v "${PWD}:/opt/project" -w /opt/project python:3.8 make run
+
+docker-tests:
+	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make tests
+
+docker-coverage:
+	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make coverage
+
+docker-mutation:
+	@docker run -v "${PWD}:/opt/project" -w /opt/project python-coverage make mutation
 
 define HELP
  Local commands
