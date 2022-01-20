@@ -17,6 +17,10 @@ coverage:
 tests:
 	python -m unittest tests/test*
 
+mutation:
+	mutmut run --paths-to-mutate trivia || true
+	mutmut results
+
 docker-run:
 	docker run --rm -v "${PWD}:/opt/project" -w /opt/project python:3.8 make run
 
