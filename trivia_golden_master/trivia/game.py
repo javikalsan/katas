@@ -102,12 +102,14 @@ class Game:
 
                 winner = self._did_player_win()
                 self.current_player += 1
-                if self.current_player == len(self.players): self.current_player = 0
+                if self.current_player == len(self.players):
+                    self.current_player = 0
 
                 return winner
             else:
                 self.current_player += 1
-                if self.current_player == len(self.players): self.current_player = 0
+                if self.current_player == len(self.players):
+                    self.current_player = 0
                 return True
         else:
             print("Answer was corrent!!!!")
@@ -117,7 +119,8 @@ class Game:
 
             winner = self._did_player_win()
             self.current_player += 1
-            if self.current_player == len(self.players): self.current_player = 0
+            if self.current_player == len(self.players):
+                self.current_player = 0
 
             return winner
 
@@ -127,7 +130,8 @@ class Game:
         self.in_penalty_box[self.current_player] = True
 
         self.current_player += 1
-        if self.current_player == len(self.players): self.current_player = 0
+        if self.current_player == len(self.players):
+            self.current_player = 0
         return True
 
     def _did_player_win(self):
@@ -136,7 +140,7 @@ class Game:
 
 def execute():
     not_a_winner = False
-
+    seed(1)
     game = Game()
 
     game.add('Chet')
