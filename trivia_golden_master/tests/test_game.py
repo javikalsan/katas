@@ -2,7 +2,7 @@ import sys
 import unittest
 from trivia.game import execute
 
-class TestGame(unittest.TestCase):
+class TriviaGoldenMaster(unittest.TestCase):
     def test_golden_master(self):
         with open('./tests/current_game.output', 'w') as sys.stdout:
             execute()
