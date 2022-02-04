@@ -1,7 +1,6 @@
 # katas
 
-A kata, or code kata, is defined as an exercise in programming which helps hone your skills through practice and repetition.
-
+katas to deliberate practice
 
 ## Recommended resources
 
@@ -14,4 +13,5 @@ A kata, or code kata, is defined as an exercise in programming which helps hone 
 
 [Kata Log](https://kata-log.rocks/)
 
-[TDD-Katas by @garora](https://github.com/garora/TDD-Katas)
+[Awesome Katas by @gamontal](https://github.com/gamontal/awesome-katas)
+
