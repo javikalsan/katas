@@ -12,7 +12,7 @@ tests:
 	python -m unittest tests/test*
 
 mutation:
-	mutmut run --paths-to-mutate tic_tac_toe || true
+	mutmut run --paths-to-mutate src || true
 	mutmut results
 
 docker-build:
