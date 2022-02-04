@@ -1,7 +1,7 @@
 from typing import List
 
-from entities import Player
-from constants import NOT_PLAYED_VALUE
+from src.entities import Player
+from src.constants import NOT_PLAYED_VALUE
 
 
 class GameBoard:

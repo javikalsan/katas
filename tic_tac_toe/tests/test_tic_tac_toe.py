@@ -1,6 +1,7 @@
-from constants import PLAYER_X, PLAYER_O
-from exceptions import InvalidPositionError, GameOverError
-from tic_tac_toe import TicTacToe, Player, GameStatus
+from src.constants import PLAYER_X, PLAYER_O
+from src.exceptions import InvalidPositionError, GameOverError
+from src.entities import Player, GameStatus
+from src.tic_tac_toe import TicTacToe
 
 import unittest
 

@@ -1,7 +1,7 @@
-from constants import NOT_PLAYED_VALUE, PLAYER_O
-from entities import Player, GameStatus
-from exceptions import InvalidPositionError, InvalidTurnError, GameOverError
-from game_board import GameBoard
+from src.constants import NOT_PLAYED_VALUE, PLAYER_O
+from src.entities import Player, GameStatus
+from src.exceptions import InvalidPositionError, InvalidTurnError, GameOverError
+from src.game_board import GameBoard
 
 
 class TicTacToe:
