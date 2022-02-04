@@ -16,14 +16,28 @@ mutation:
 	mutmut results
 
 docker-build:
-	@docker build . -t python-coverage
+	@docker build . -t python-testing
 
 docker-tests:
-	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make tests
+	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-testing make tests
 
 docker-coverage:
-	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-coverage make coverage
+	@docker run --rm -v "${PWD}:/opt/project" -w /opt/project python-testing make coverage
 
 docker-mutation:
-	@docker run -v "${PWD}:/opt/project" -w /opt/project python-coverage make mutation
+	@docker run -v "${PWD}:/opt/project" -w /opt/project python-testing make mutation
 
+define HELP
+ Local commands
+        - make test\tRun tests locally using Python3
+        - make coverage\tRun tests coverage using Python3
+        - make mutation\tRun mutation tests locally using Python3
+ Docker commands
+        - make docker-build\tBuild docker image to execute dockerized testing tools
+        - make docker-test\tRun inside docker with Python3
+        - make docker-coverage\tRun inside docker using Python3
+        - make docker-mutation\tRun mutation tests inside docker using Python3
+ \nPlease execute "make <command>". Example: make docker-build\n
+endef
+
+export HELP
