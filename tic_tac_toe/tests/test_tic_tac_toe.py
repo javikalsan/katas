@@ -1,5 +1,5 @@
 from src.constants import PLAYER_X, PLAYER_O
-from src.exceptions import InvalidPositionError, GameOverError
+from src.exceptions import InvalidPositionError, InvalidTurnError, GameOverError
 from src.entities import Player, GameStatus
 from src.tic_tac_toe import TicTacToe
 
@@ -21,6 +21,13 @@ class TicTacToeTest(unittest.TestCase):
 
         self.assertEqual(self.tic_tac_toe.game_board.grid[5], PLAYER_X)
 
+    def test_x_always_goes_first_unhappy_path(self):
+
+        with self.assertRaises(InvalidTurnError) as context:
+            self.tic_tac_toe.play(Player(PLAYER_O, 5))
+
+        self.assertEqual("It's not your turn!", str(context.exception))
+
     def test_players_alternate_placing_x_and_o_on_the_board(self):
 
         self.tic_tac_toe.play(Player(PLAYER_X, 5))
@@ -28,6 +35,15 @@ class TicTacToeTest(unittest.TestCase):
         self.tic_tac_toe.play(Player(PLAYER_X, 0))
 
         self.assertEqual(self.tic_tac_toe.game_board.grid[0], PLAYER_X)
+
+    def test_players_alternate_placing_x_and_o_on_the_board_unhappy_path(self):
+        self.tic_tac_toe.play(Player(PLAYER_X, 5))
+        self.tic_tac_toe.play(Player(PLAYER_O, 2))
+
+        with self.assertRaises(InvalidTurnError) as context:
+            self.tic_tac_toe.play(Player(PLAYER_O, 0))
+
+        self.assertEqual("It's not your turn!", str(context.exception))
 
     def test_players_cannot_play_on_a_played_position(self):
 
@@ -42,7 +58,6 @@ class TicTacToeTest(unittest.TestCase):
         self._tic_tac_toe_play_sequence_x_winner()
 
         self.assertEqual(PLAYER_X, self.tic_tac_toe.game_status.winner)
-
 
     def test_nine_squares_filled_without_winner_game_is_a_draw(self):
 
