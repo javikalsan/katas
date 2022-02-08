@@ -1,6 +1,7 @@
 import unittest
 
-from src.gilded_rose import Item, GildedRose
+from src.gilded_rose import GildedRose
+from src.item import Item
 
 A_NAME = 'a_name'
 

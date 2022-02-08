@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 from src.gilded_rose import *
+from src.item import Item
 
 if __name__ == "__main__":
     print ("OMGHAI!")
