@@ -18,10 +18,10 @@ class RegularItem:
 
     def update_quality(self):
         if 50 > self.quality > 0:
-            self.quality = self.quality - self._compute_quality_drecrement()
+            self.quality = self.quality - self._compute_quality_decrement()
         self.sell_in = self.sell_in - 1
 
-    def _compute_quality_drecrement(self):
+    def _compute_quality_decrement(self):
         if self.sell_in <= 0:
             return 2
         return 1
@@ -52,7 +52,7 @@ class Conjured(RegularItem):
 
 class Backstage(RegularItem):
     def update_quality(self):
-        self._handle_sellin_value_to_increment()
+        self._handle_sell_in_value_to_increment()
         self.quality = self._compute_quality_value()
         self.sell_in = self.sell_in - 1
 
@@ -61,7 +61,7 @@ class Backstage(RegularItem):
             return 50
         return self.quality
 
-    def _handle_sellin_value_to_increment(self):
+    def _handle_sell_in_value_to_increment(self):
         if 10 >= self.sell_in > 5:
             self.quality = self.quality + 2
             return
