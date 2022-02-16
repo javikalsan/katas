@@ -2,36 +2,23 @@ import unittest
 import method
 import field
 
+NORMAL_USER_ROLE = 'normal'
+ADMIN_USER_ROLE = 'admin'
+ADMIN_USER_ID = 12345
+A_NORMAL_USER_ID = 11111
+
 
 class AuthenticatorTests(unittest.TestCase):
-
     def test_administrator_is_always_authenticated(self):
         service = method.AuthenticationService()
-        admin_id = 12345
-
-        self.assertTrue(service.is_authenticated(admin_id))
-
-    def test_administrator_is_always_authenticated_parallel(self):
-        service = method.AuthenticationService()
-        admin_id = 12345
-
-        self.assertTrue(service.is_authenticated_parallel(admin_id, 'admin'))
+        self.assertTrue(service.is_authenticated(ADMIN_USER_ID, ADMIN_USER_ROLE))
 
     def test_normal_user_is_not_authenticated_initially(self):
         service = method.AuthenticationService()
-        normal_user_id = 11111
-
-        self.assertFalse(service.is_authenticated(normal_user_id))
-
-    def test_normal_user_is_not_authenticated_initially_parallel(self):
-        service = method.AuthenticationService()
-        normal_user_id = 11111
-
-        self.assertFalse(service.is_authenticated_parallel(normal_user_id, 'normal'))
+        self.assertFalse(service.is_authenticated(A_NORMAL_USER_ID, NORMAL_USER_ROLE))
 
 
 class ShoppingCartTests(unittest.TestCase):
-
     def test_cart_have_an_items_prices_list(self):
         shopping_cart = field.ShoppingCart()
 
