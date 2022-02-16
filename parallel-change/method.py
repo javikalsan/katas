@@ -1,12 +1,12 @@
 class AuthenticationService:
+    ROLES_AVAILABLE = ['admin', 'normal']
+
     def is_authenticated(self, id):
         return id == 12345
 
-    '''
-    the goal is to replace the method above with this one:
-    def is_authenticated(self, role, id):
-        return id == 12345
-    '''
+    def is_authenticated_parallel(self, role, id):
+        if role in self.ROLES_AVAILABLE:
+            return id == 12345
 
 
 class AuthenticationClient:

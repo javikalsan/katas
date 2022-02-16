@@ -10,10 +10,20 @@ class AuthenticatorTests(unittest.TestCase):
         adminId = 12345
         self.assertTrue(service.is_authenticated(adminId))
 
+    def test_administrator_is_always_authenticated_parallel(self):
+        service = method.AuthenticationService()
+        admin_id = 12345
+        self.assertTrue(service.is_authenticated_parallel('admin', admin_id))
+
     def test_normal_user_is_not_authenticated_initially(self):
         service = method.AuthenticationService()
         normalUserId = 11111
         self.assertFalse(service.is_authenticated(normalUserId))
+
+    def test_normal_user_is_not_authenticated_initially_parallel(self):
+        service = method.AuthenticationService()
+        normal_user_id = 11111
+        self.assertFalse(service.is_authenticated_parallel('normal', normal_user_id))
 
 
 class ShoppingCartTests(unittest.TestCase):
