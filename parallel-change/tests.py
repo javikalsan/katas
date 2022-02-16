@@ -25,9 +25,9 @@ class ShoppingCartTests(unittest.TestCase):
 
     def test_cat_may_just_have_an_item_list(self):
         shoppingCart = field.ShoppingCart()
-        shoppingCart.addParallel(10)
-        shoppingCart.addParallel(10)
-        self.assertEqual(2, len(shoppingCart.prices))
+        shoppingCart.add(10)
+        shoppingCart.add(10)
+        self.assertEqual(2, shoppingCart.number_of_products_parallel())
 
     def test_the_total_price_of_the_cart_is_total_of_its_contents(self):
         shoppingCart = field.ShoppingCart()
@@ -36,8 +36,8 @@ class ShoppingCartTests(unittest.TestCase):
 
     def test_the_total_price_of_the_cart_is_the_sum_of_prices(self):
         shoppingCart = field.ShoppingCart()
-        shoppingCart.addParallel(10)
-        shoppingCart.addParallel(10)
+        shoppingCart.add(10)
+        shoppingCart.add(10)
         self.assertEqual(20, shoppingCart.calculate_total_price_parallel())
 
     def test_has_discount_when_contains_at_least_one_premium_item(self):
@@ -47,8 +47,8 @@ class ShoppingCartTests(unittest.TestCase):
 
     def test_has_discount_when_contains_at_least_one_premium_item_parallel(self):
         shoppingCart = field.ShoppingCart()
-        shoppingCart.addParallel(100)
-        shoppingCart.addParallel(20)
+        shoppingCart.add(100)
+        shoppingCart.add(20)
         self.assertTrue(shoppingCart.has_discount_parallel())
 
     def test_doesnt_have_discount_when_all_its_items_are_cheap(self):
@@ -58,7 +58,7 @@ class ShoppingCartTests(unittest.TestCase):
 
     def test_doesnt_have_discount_when_all_its_items_are_cheap_parallel(self):
         shoppingCart = field.ShoppingCart()
-        shoppingCart.addParallel(10)
+        shoppingCart.add(10)
         self.assertFalse(shoppingCart.has_discount_parallel())
 
 if __name__ == "__main__":

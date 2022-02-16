@@ -11,13 +11,10 @@ class ShoppingCart:
     '''
 
     def add(self, price):
-        self.price = price
-
-    def addParallel(self, price):
         self.prices.append(price)
 
     def calculate_total_price(self):
-        return self.price
+        return self.calculate_total_price_parallel()
 
     def calculate_total_price_parallel(self):
         total = 0
@@ -26,7 +23,7 @@ class ShoppingCart:
         return total
 
     def has_discount(self):
-        return self.price >= 100
+        return self.has_discount_parallel()
 
     def has_discount_parallel(self):
         for price in self.prices:
@@ -35,7 +32,10 @@ class ShoppingCart:
         return False
 
     def number_of_products(self):
-        return 1
+        return self.number_of_products_parallel()
+
+    def number_of_products_parallel(self):
+        return len(self.prices)
 
 
 class SomeConsumer():
