@@ -8,21 +8,30 @@ class Game(object):
         self._board = Board()
 
     def play(self, symbol, x, y):
-        # if first move
-        if self._lastSymbol == ' ':
-            # if player is X
-            if symbol == 'O':
-                raise Exception('Invalid first player')
-        # if not first move but player repeated
-        elif symbol == self._lastSymbol:
+        if self._is_first_move() and self._is_O_player_turn(symbol):
+            raise Exception('Invalid first player')
+
+        if self._is_player_repeated(symbol):
             raise Exception('Invalid next player')
-        # if not first move but play on an already played tile
-        elif self._board.TileAt(x, y).Symbol != ' ':
+
+        if self._is_tile_used(x, y):
             raise Exception('Invalid position')
 
         # update game state
         self._lastSymbol = symbol
         self._board.AddTileAt(symbol, x, y)
+
+    def _is_first_move(self):
+        return self._lastSymbol == ' '
+
+    def _is_O_player_turn(self, symbol):
+        return symbol == 'O'
+
+    def _is_player_repeated(self, symbol):
+        return symbol == self._lastSymbol
+
+    def _is_tile_used(self, x, y):
+        return self._board.TileAt(x, y).Symbol != ' '
 
     def winner(self):
         # if the positions in first row are taken
