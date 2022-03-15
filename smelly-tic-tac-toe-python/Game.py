@@ -47,12 +47,14 @@ class Game(object):
         return self._board.player_at_position(x, y) != self.NOT_PLAYED_VALUE
 
     def _is_three_in_a_row(self, row):
-        return self._board.player_at_position(row, 0) == self._board.player_at_position(row, 1) \
-               and self._board.player_at_position(row, 2) == self._board.player_at_position(row, 1)
+        row_values = self._get_row_values(row)
+        return row_values.count(row_values[0]) == len(row_values) and row_values[0] is not None
 
     def _is_empty_row(self, row):
-        if self._board.player_at_position(row, 0) == self.NOT_PLAYED_VALUE \
-                and self._board.player_at_position(row, 1) == self.NOT_PLAYED_VALUE \
-                and self._board.player_at_position(row, 2) == self.NOT_PLAYED_VALUE:
-            return True
-        return False
+        row_values = self._get_row_values(row)
+        return row_values.count(row_values[0]) == len(row_values) and row_values[0] is None
+
+    def _get_row_values(self, row):
+        return [self._board.player_at_position(row, 0),
+                self._board.player_at_position(row, 1),
+                self._board.player_at_position(row, 2)]
