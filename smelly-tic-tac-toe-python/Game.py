@@ -19,7 +19,7 @@ class Game(object):
             if self._is_empty_row(row):
                 continue
             if self._is_three_in_a_row(row):
-                return self._board.TileAt(row, 0).Symbol
+                return self._board.TileAt_parallel(row, 0)
         return self.EMPTY
 
     def _apply_validations(self, symbol, x, y):
@@ -32,6 +32,7 @@ class Game(object):
 
     def _update_game_state(self, symbol, x, y):
         self._lastSymbol = symbol
+        self._board.AddTileAt_parallel(symbol, x, y)
         self._board.AddTileAt(symbol, x, y)
 
     def _is_first_move(self):
