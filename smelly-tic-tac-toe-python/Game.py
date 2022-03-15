@@ -3,11 +3,11 @@ from Board import Board
 
 class Game(object):
     ROWS = [0, 1, 2]
-    EMPTY = None
+    NOT_PLAYED_VALUE = None
     PLAYER_O = 'O'
 
     def __init__(self):
-        self._lastSymbol = self.EMPTY
+        self._lastSymbol = self.NOT_PLAYED_VALUE
         self._board = Board()
 
     def play(self, symbol, x, y):
@@ -19,8 +19,8 @@ class Game(object):
             if self._is_empty_row(row):
                 continue
             if self._is_three_in_a_row(row):
-                return self._board.TileAt_parallel(row, 0)
-        return self.EMPTY
+                return self._board.player_at_position(row, 0)
+        return self.NOT_PLAYED_VALUE
 
     def _apply_validations(self, symbol, x, y):
         if self._is_first_move() and self._is_O_player_turn(symbol):
@@ -32,10 +32,10 @@ class Game(object):
 
     def _update_game_state(self, symbol, x, y):
         self._lastSymbol = symbol
-        self._board.AddTileAt_parallel(symbol, x, y)
+        self._board.insert_player_at_position(symbol, x, y)
 
     def _is_first_move(self):
-        return self._lastSymbol == self.EMPTY
+        return self._lastSymbol == self.NOT_PLAYED_VALUE
 
     def _is_O_player_turn(self, symbol):
         return symbol == self.PLAYER_O
@@ -44,15 +44,15 @@ class Game(object):
         return symbol == self._lastSymbol
 
     def _is_tile_used(self, x, y):
-        return self._board.TileAt_parallel(x, y) != self.EMPTY
+        return self._board.player_at_position(x, y) != self.NOT_PLAYED_VALUE
 
     def _is_three_in_a_row(self, row):
-        return self._board.TileAt_parallel(row, 0) == self._board.TileAt_parallel(row, 1) \
-                and self._board.TileAt_parallel(row, 2) == self._board.TileAt_parallel(row, 1)
+        return self._board.player_at_position(row, 0) == self._board.player_at_position(row, 1) \
+               and self._board.player_at_position(row, 2) == self._board.player_at_position(row, 1)
 
     def _is_empty_row(self, row):
-        if self._board.TileAt_parallel(row, 0) == self.EMPTY \
-                and self._board.TileAt_parallel(row, 1) == self.EMPTY \
-                and self._board.TileAt_parallel(row, 2) == self.EMPTY:
+        if self._board.player_at_position(row, 0) == self.NOT_PLAYED_VALUE \
+                and self._board.player_at_position(row, 1) == self.NOT_PLAYED_VALUE \
+                and self._board.player_at_position(row, 2) == self.NOT_PLAYED_VALUE:
             return True
         return False
