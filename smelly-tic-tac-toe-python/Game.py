@@ -3,7 +3,7 @@ from Board import Board
 
 class Game(object):
     ROWS = [0, 1, 2]
-    EMPTY = ' '
+    EMPTY = None
     PLAYER_O = 'O'
 
     def __init__(self):
@@ -33,7 +33,6 @@ class Game(object):
     def _update_game_state(self, symbol, x, y):
         self._lastSymbol = symbol
         self._board.AddTileAt_parallel(symbol, x, y)
-        self._board.AddTileAt(symbol, x, y)
 
     def _is_first_move(self):
         return self._lastSymbol == self.EMPTY
@@ -45,15 +44,15 @@ class Game(object):
         return symbol == self._lastSymbol
 
     def _is_tile_used(self, x, y):
-        return self._board.TileAt(x, y).Symbol != self.EMPTY
+        return self._board.TileAt_parallel(x, y) != self.EMPTY
 
     def _is_three_in_a_row(self, row):
-        return self._board.TileAt(row, 0).Symbol == self._board.TileAt(row, 1).Symbol \
-                and self._board.TileAt(row, 2).Symbol == self._board.TileAt(row, 1).Symbol
+        return self._board.TileAt_parallel(row, 0) == self._board.TileAt_parallel(row, 1) \
+                and self._board.TileAt_parallel(row, 2) == self._board.TileAt_parallel(row, 1)
 
     def _is_empty_row(self, row):
-        if self._board.TileAt(row, 0).Symbol == self.EMPTY \
-                and self._board.TileAt(row, 1).Symbol == self.EMPTY \
-                and self._board.TileAt(row, 2).Symbol == self.EMPTY:
+        if self._board.TileAt_parallel(row, 0) == self.EMPTY \
+                and self._board.TileAt_parallel(row, 1) == self.EMPTY \
+                and self._board.TileAt_parallel(row, 2) == self.EMPTY:
             return True
         return False
