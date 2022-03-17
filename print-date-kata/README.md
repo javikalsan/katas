@@ -53,28 +53,29 @@ Unit test the printCurrentDate function.
 ## How to run and see the result
 
 **Locally**
+
 Run the tests
 
-    `make tests`
+    make tests
 
 Run the code coverage
 
-    `make coverage`
+    make coverage
 
 
 **Docker**
 
 Generate the image
 
-    `make docker-build`
+    make docker-build
 
 Run the tests
 
-    `make docker-tests`
+    make docker-tests
 
 Run the code coverage
 
-    `make docker-coverage`
+    make docker-coverage
 
 ## Authors
 Luis Rovirosa [@luisrovirosa](https://www.twitter.com/luisrovirosa)
