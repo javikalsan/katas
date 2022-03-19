@@ -1,5 +1,4 @@
 class PrintDate:
-
     def __init__(self, calendar, printer):
         self.printer = printer
         self.calendar = calendar
